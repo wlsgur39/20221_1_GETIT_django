@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
-    <title>Blog List</title>
-    <link rel="stylesheet" href="./bootstrap4/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <title>Blog</title>
+    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
+    <script src="https://kit.fontawesome.com/**********.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -69,24 +71,23 @@
         <div class="row">
           <div class="col md-8 col-lg-9">
             <h1>BLOG LIST</h1>
+            {% for p in post_list %}
+
             <div class="card mb-4">
                 <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
                 <div class="card-body">
                     <div class="small text-muted">January 1, 2022</div>
-                    <h2 class="card-title h4">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                    <a class="btn btn-primary" href="#!">Read more →</a>
+                    <h2 class="card-title h4">{{ p.title }} </h2>
+                    <p class="card-text">{{ p.content }}</p>
+                    <a href="{{ p.get_absoulte_url}}" class="btn btn-primary">Read More &rarr;</a>
+                </div>
+                <div>
+                    Posted on {{ p.created_at}} by
+                    <a href="#">작성자명 쓸 위치</a>
                 </div>
             </div>
-            <div class="card mb-4">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                <div class="card-body">
-                    <div class="small text-muted">January 1, 2022</div>
-                    <h2 class="card-title h4">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                    <a class="btn btn-primary" href="#!">Read more →</a>
-                </div>
-            </div>
+            {% endfor %}
+
           </div>
           <div class="col-md-4 col-lg-3">
                 <!-- Search widget-->
